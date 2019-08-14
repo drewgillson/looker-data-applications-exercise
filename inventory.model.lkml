@@ -5,6 +5,8 @@ explore: product {}
 view: product {
   derived_table: {
     sql: SELECT '2019-08-13 00:00:00' AS updated_at, 'apple' AS name, 2 AS quantity_on_hand, 0 AS quantity_on_order
+         UNION ALL
+         SELECT '2019-08-13 00:00:00', 'banana', 3, 0
     ;;
   }
 
