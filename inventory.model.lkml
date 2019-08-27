@@ -15,6 +15,10 @@ view: product {
     sql: ${TABLE}.updated_at ;;
   }
 
+  dimension: large_string {
+    type: string
+    sql: REPEAT('A',5000) ;;
+  }
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
