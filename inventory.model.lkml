@@ -4,7 +4,9 @@ explore: product {}
 
 view: product {
   derived_table: {
-    sql: SELECT '2019-08-13 00:00:00' AS updated_at, 'apple' AS name, 2 AS quantity_on_hand, 0 AS quantity_on_order
+    sql: SELECT '2019-08-13 00:00:00' AS updated_at, 'DMV Driving Records - % 50 States Plus D.C. Puerto Rico Coverage Plus Fees' AS name, 2 AS quantity_on_hand, 0 AS quantity_on_order
+         UNION ALL
+         SELECT '2019-08-13 00:00:00' AS updated_at, 'Education Verification Technology 3Entity,2App-proof,Close,75-80HR/93-97%' AS name, 4 AS quantity_on_hand, 1 AS quantity_on_order
          UNION ALL
          SELECT '2019-08-13 00:00:00', 'banana', 3, 0
     ;;
@@ -24,13 +26,14 @@ view: product {
     sql: ${TABLE}.name ;;
   }
 
-  dimension: quantity_on_hand {
-    type: number
+  measure: quantity_on_hand {
+    type: sum
+    drill_fields: [quantity_on_order, quantity_on_hand]
     sql: ${TABLE}.quantity_on_hand ;;
   }
 
-  dimension: quantity_on_order {
-    type: number
+  measure: quantity_on_order {
+    type: sum
     sql: ${TABLE}.quantity_on_order ;;
   }
 }
